@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRCTC Autofill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header-badge">🚂</div>
+    <div class="header-text">
+      <h1>IRCTC Autofill</h1>
+      <span class="header-sub">Passenger Manager</span>
+    </div>
+    <div id="passengerCount" class="pax-count">0 / 6</div>
+  </header>
+
+  <!-- ── Status toast ── -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- ── Passenger list ── -->
+  <section class="section">
+    <div class="section-label">SAVED PASSENGERS</div>
+    <ul id="passengerList" class="pax-list">
+      <!-- cards injected by popup.js -->
+    </ul>
+    <p id="emptyState" class="empty-state">No passengers yet. Add one below ↓</p>
+  </section>
+
+  <!-- ── Add / Edit form ── -->
+  <section class="section form-section">
+    <div class="section-label" id="formLabel">ADD PASSENGER</div>
+    <div class="form-grid">
+
+      <div class="field full-width">
+        <label for="name">Full Name <span class="req">*</span></label>
+        <input id="name" type="text" placeholder="As on ID proof" maxlength="70" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="age">Age <span class="req">*</span></label>
+        <input id="age" type="number" placeholder="0–125" min="0" max="125" />
+      </div>
+
+      <div class="field">
+        <label for="gender">Gender <span class="req">*</span></label>
+        <select id="gender">
+          <option value="">Select</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="T">Transgender</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="berth">Berth Preference</label>
+        <select id="berth">
+          <option value="NP">No Preference</option>
+          <option value="LB">Lower</option>
+          <option value="MB">Middle</option>
+          <option value="UB">Upper</option>
+          <option value="SL">Side Lower</option>
+          <option value="SU">Side Upper</option>
+          <option value="WS">Window Side</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="nationality">Nationality</label>
+        <select id="nationality">
+          <option value="IN">Indian</option>
+          <option value="AF">Afghan</option>
+          <option value="AU">Australian</option>
+          <option value="BD">Bangladeshi</option>
+          <option value="BT">Bhutanese</option>
+          <option value="CN">Chinese</option>
+          <option value="FR">French</option>
+          <option value="DE">German</option>
+          <option value="GB">British</option>
+          <option value="JP">Japanese</option>
+          <option value="MV">Maldivian</option>
+          <option value="NP">Nepali</option>
+          <option value="PK">Pakistani</option>
+          <option value="LK">Sri Lankan</option>
+          <option value="US">American</option>
+          <option value="OT">Other</option>
+        </select>
+      </div>
+
+    </div><!-- .form-grid -->
+
+    <!-- hidden index when editing -->
+    <input type="hidden" id="editIndex" value="-1" />
+
+    <div class="form-actions">
+      <button id="btnSave"   class="btn btn-primary">💾 Save</button>
+      <button id="btnCancel" class="btn btn-ghost hidden">Cancel</button>
+    </div>
+  </section>
+
+  <!-- ── Fill button ── -->
+  <section class="section fill-section">
+    <button id="btnFill" class="btn btn-fill">
+      <span class="fill-icon">⚡</span>
+      Fill Passengers on IRCTC
+    </button>
+    <p class="fill-note">Opens the booking page and fills saved passengers in order.</p>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "IRCTC Passenger Autofill",
+  "version": "1.0.0",
+  "description": "Quickly fill passenger details on IRCTC booking pages.",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://www.irctc.co.in/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "IRCTC Passenger Autofill",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.irctc.co.in/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
